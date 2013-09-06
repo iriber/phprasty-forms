@@ -1,0 +1,43 @@
+<!-- BEGIN:main -->
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$('#input-radio_{inputId} label').click(function() {
+
+		$('#input-radio_{inputId}').attr('checked', !$('#input-radio_{inputId}').attr('checked'));	
+
+		if( $('#input-radio_{inputId}').attr('checked')) ){
+
+		}else{
+
+		} 
+		
+	});
+
+	
+});
+</script>
+
+<div class="input-radio" id="input-radio_{inputId}">
+<input type="radio"  {custom} <!-- BEGIN: property --> {name}="{value}" <!-- END: property -->
+ 
+ <!-- BEGIN:required -->
+ jVal="{valid:function (val) { return required(val,'{requiredMessage}')+number(val,'{invalidFormatMessage}'); }}"
+ <!-- END:required -->
+<!-- BEGIN:no_required -->
+ jVal="{valid:function (val) { return number(val,'{invalidFormatMessage}'); }}"
+ <!-- END:no_required -->
+ 
+ 
+ />
+ <!-- BEGIN:readOnly -->
+<input type="hidden" name="{name}" value="{value}">
+<!-- END:readOnly -->
+<label>
+	<span class="input-radio-btn-inner">
+		<span class="input-radio-btn-text">One</span>
+	</span>
+</label>
+</div>
+
+<!-- END:main -->

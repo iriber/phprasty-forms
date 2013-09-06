@@ -1,0 +1,10 @@
+<rasty specificationClass="Rasty\Forms\addpopup\AddPopup" templateLocation="AddPopup.htm">
+
+	<param name="onSuccessCallback" value="get:onSuccessCallback" />
+	<param name="formType" value="get:formType" />
+	
+	<component id="popupForm" instance="form" >
+		
+	</component>
+	
+</rasty>

@@ -1,0 +1,194 @@
+<!-- BEGIN:main -->
+<script>
+
+function findentity_{inputId}_show_addentity(){
+	
+
+	//creamos el div donde vamos a escribir el popup
+	//agregamos el div para el dialogo si es que no existe.
+	if (!$("#findentities_{inputId}_popup").length) {
+		$("body").append("<div id='findentities_{inputId}_popup' style='display: none;'></div>");
+	}
+		
+	openAddentityPopup("{WEB_PATH}", "{popupFormType}", "findentity_{inputId}_addentity_callback", "#findentities_{inputId}_popup");
+	
+}
+
+function findentity_{inputId}_addentity_callback( oid ){
+	
+	$("#findentity_{inputId}_inputCode").val( oid );
+	$("#findentity_{inputId}_inputCode").blur();
+	$("#{inputId}").val( oid );
+
+	closeFinderPopup("#findentities_{inputId}_popup");
+}
+
+function findentity_{inputId}_user_callback(entity){
+	
+	//función callback definida por el usuario del componente.
+	if( "{onSelectCallback}".length > 0  )
+  		{onSelectCallback}(entity);
+	
+}
+
+function findentity_{inputId}_autocomplete_callback(oid){
+	
+	$("#findentity_{inputId}_inputCode").val( oid );
+	$("#findentity_{inputId}_inputCode").blur();
+	$("#{inputId}").val( oid );
+}
+
+function findentity_{inputId}_findbycode_callback( entity ){
+
+	if( entity != null && entity["error"]!=null){
+
+		findentity_{inputId}_showMessageError( entity["error"], true )
+		$("#findentity_{inputId}_inputCode").val( "" );
+		$("#findentity_{inputId}_autocomplete").val( "" );
+
+		alert(entity["error"]);
+	}
+
+	if( entity != null && entity["oid"]!=null){
+		$("#findentity_{inputId}_inputCode").val( entity["oid"] );
+		$("#{inputId}").val( entity["oid"] );
+		$("#findentity_{inputId}_autocomplete").val( entity["label"] );
+
+		findentity_{inputId}_user_callback(entity);
+	}else{
+		$("#findentity_{inputId}_inputCode").val( "" );
+		$("#findentity_{inputId}_autocomplete").val( "" );
+		$("#{inputId}").val( "" );
+	}
+	
+	
+  		
+}
+
+function findentity_{inputId}_showMessageError( msg, hide ){
+	
+	$( "#text_findentity_msg_{inputId}" ).html( msg );
+	
+	updated_right = ($(window).width() / 2) - ($( "#findentity_msg_{inputId}" ).width()/2);
+	$( "#findentity_msg_{inputId}" ).css({'right': updated_right});
+	
+	if( hide )
+		$( "#findentity_msg_{inputId}" ).show().delay(4000).slideUp(300);
+	else
+		$( "#findentity_msg_{inputId}" ).show();
+}
+
+function findentity_{inputId}_openPopup(){
+
+	//creamos el div donde vamos a escribir el popup
+	//agregamos el div para el dialogo si es que no existe.
+	if (!$("#findentities_{inputId}_popup").length) {
+		$("body").append("<div id='findentities_{inputId}_popup' style='display: none;'></div>");
+	}
+		
+	openFinderPopup("{WEB_PATH}", "{popupFilterType}", "findentity_{inputId}_popup_callback", "#findentities_{inputId}_popup");
+	
+}
+
+function findentity_{inputId}_popup_callback(oid){
+	
+	
+	$("#findentity_{inputId}_inputCode").val( oid );
+	$("#findentity_{inputId}_inputCode").blur();
+	$("#{inputId}").val( oid );
+
+	closeFinderPopup("#findentities_{inputId}_popup");
+}
+
+$(document).ready(function(){
+
+	$('#findentity_{inputId}_inputCode').blur(function() {
+
+		$('#findentity_msg_{inputId}').hide();
+		$("#{inputId}").val( "" );
+		
+		var query = $(this).val();
+		var parent = $("#findentity_{inputId}_parent").val();
+		
+		if( query.length > 0 ){
+		  	$.ajax({
+			      data: "finder={finder}&parent=" + parent + "&code=" + query,
+			      type: "GET",
+			      dataType: "json",
+			      url: "{WEB_PATH}findEntity.json",
+			      success: function(data){
+		      		//función callback utilizada por el componente.
+		  			findentity_{inputId}_findbycode_callback(data);
+			      },
+		  		  error: function(data){
+			      		//función callback utilizada por el componente.
+			  			alert(data);
+				      }
+			     });
+		}else{
+			findentity_{inputId}_findbycode_callback(null);
+		}
+	});
+
+	//$('#findentity_{inputId}_inputCode').blur();
+});
+
+$(document).ready(function(){
+
+	$("#findentity_{inputId} .helpTipLink span.open").click(function(){
+		$("#findentity_{inputId} .helpTipLink span.helpTip").show();
+	});
+	$("#findentity_{inputId} .helpTipLink span.close").click(function(){
+		$("#findentity_{inputId} .helpTipLink span.helpTip").hide();
+	});
+});
+
+</script>
+
+<!-- hidden por donde se envía la entity cuando se popula el formulario 
+	se envía el id de la entity
+-->
+<input type="hidden" name="{inputId}" id="{inputId}" value="{entityCode}">
+<input type="hidden" name="findentity_{inputId}_parent" id="findentity_{inputId}_parent" value="{parent}">
+
+<div class="findentity" id="findentity_{inputId}" style="min-width: '{minWidth}'; display:inline;">
+<!-- link para buscar la entity con un popup -->
+<!-- BEGIN:popup -->
+<a class="link_popup" href="#" onclick="javascript: findentity_{inputId}_openPopup();">
+<img class="btn-icon" border=0 src="{WEB_PATH}/css/images/search_over.png" /></a>
+
+<!-- END:popup -->
+
+<!-- input para ingresar el código. -->
+<div class="findentity_inputCode">
+<rasty id="inputCode" />
+</div>
+<!-- input para mostrar la descripción de la entidad encontrada -->
+<div class="findentity_autocomplete">
+<rasty id="autocomplete" />
+</div>
+<!-- BEGIN:addentity --> 
+<a id="link_addentity" href="#" onclick="javascript: findentity_{inputId}_show_addentity();">
+<img class="btn-icon" border=0 src="{WEB_PATH}/css/images/add_over.png" /></a>
+<!-- END:addentity -->
+
+<!-- BEGIN:help -->
+<span class="helpTipLink">
+   	<span class="open"></span>
+    <span class="helpTip">
+    	<span class="helpTipWrapper">
+    		<span class="close"></span>
+    		<span class="texto">
+    			{autocompleteHelpMsg} <br /> <br />
+    			<img class="btn-icon" border=0 src="{WEB_PATH}/css/images/search_over.png" />&nbsp;{popupHelpMsg} <br /> <br />
+    			<img class="btn-icon" border=0 src="{WEB_PATH}/css/images/add_over.png" />&nbsp;{addHelpMsg}	    		
+    		</span>
+    	</span>
+    	<span class="flecha"></span>
+    </span>
+</span>
+<!-- END:help -->
+
+</div>
+
+<!-- END: main -->

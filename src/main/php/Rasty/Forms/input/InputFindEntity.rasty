@@ -1,0 +1,25 @@
+<rasty specificationClass="Rasty\Forms\input\InputFindEntity" templateLocation="InputFindentity.htm">
+
+
+	<component id="inputCode" type="InputText">
+		<param name="inputId" value="inputCodeId" />
+		<param name="name" value="inputCodeId" />
+		<param name="value" value="entityId" />
+		<param name="styleCss" value="inputCodeStyleCss" />
+		<param name="isEditable" value="isEditable" />
+		<param name="isVisible" value="isVisible" />
+	</component>
+
+	<component id="autocomplete" type="InputAutocomplete">
+		<param name="inputId" value="autocompleteId" />
+		<param name="name" value="autocompleteId" />
+		<param name="value" value="value" />
+		<param name="placeholder" value="placeholder" />
+		<param name="finder" value="finder" />
+		<param name="functionCallback" value="functionAutocompleteCallback" />
+		<param name="styleCss" value="autocompleteStyleCss" />
+		<param name="requiredMessage" value="requiredMessage" />
+		<param name="isEditable" value="isEditable" />
+		<param name="isVisible" value="isVisible" />
+	</component>
+</rasty>

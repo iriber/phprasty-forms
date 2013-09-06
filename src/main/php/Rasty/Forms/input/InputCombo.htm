@@ -1,0 +1,18 @@
+<!-- BEGIN:main -->
+<select   <!-- BEGIN: property --> {name}="{value}" <!-- END: property -->
+ <!-- BEGIN:required -->
+ jVal="{valid:function (val) { return required(val,'{msg_required}'); }}"
+ <!-- END:required -->
+>
+	<!-- BEGIN: option_empty -->
+	<option value="">{empty_label}</option>
+	<!-- END: option_empty -->
+	
+    <!-- BEGIN: option -->
+    <option value={value}>{label}</option>
+	<!-- END: option -->
+</select>
+<!-- BEGIN:readOnly -->
+<input type="hidden" name="{name}" value="{value}">
+<!-- END:readOnly -->
+<!-- END:main -->

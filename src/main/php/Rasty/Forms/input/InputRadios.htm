@@ -1,0 +1,23 @@
+<!-- BEGIN:main -->
+
+
+<div class="ui-radio">
+<input type="radio"  {custom} <!-- BEGIN: property --> {name}="{value}" <!-- END: property -->
+ 
+ <!-- BEGIN:required -->
+ jVal="{valid:function (val) { return required(val,'{requiredMessage}')+number(val,'{invalidFormatMessage}'); }}"
+ <!-- END:required -->
+<!-- BEGIN:no_required -->
+ jVal="{valid:function (val) { return number(val,'{invalidFormatMessage}'); }}"
+ <!-- END:no_required -->
+ 
+ 
+ />
+ <!-- BEGIN:readOnly -->
+<input type="hidden" name="{name}" value="{value}">
+<!-- END:readOnly -->
+<label for="radio-choice-h-2a" data-corners="true" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="radio-off" data-theme="c" data-mini="false" class="ui-first-child ui-radio-off ui-btn ui-btn-corner-all ui-fullsize ui-btn-icon-left ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">One</span><span class="ui-icon ui-icon-radio-off ui-icon-shadow">&nbsp;</span></span>
+</label>
+</div>
+
+<!-- END:main -->

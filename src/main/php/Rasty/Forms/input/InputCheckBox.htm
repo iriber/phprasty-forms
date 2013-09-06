@@ -1,0 +1,16 @@
+<!-- BEGIN:main -->
+<input type="checkbox"  {custom} <!-- BEGIN: property --> {name}="{value}" <!-- END: property -->
+ 
+ <!-- BEGIN:required -->
+ jVal="{valid:function (val) { return required(val,'{requiredMessage}')+number(val,'{invalidFormatMessage}'); }}"
+ <!-- END:required -->
+<!-- BEGIN:no_required -->
+ jVal="{valid:function (val) { return number(val,'{invalidFormatMessage}'); }}"
+ <!-- END:no_required -->
+ 
+ 
+ />
+ <!-- BEGIN:readOnly -->
+<input type="hidden" name="{name}" value="{value}">
+<!-- END:readOnly -->
+<!-- END:main -->

@@ -1,0 +1,12 @@
+<!-- BEGIN: main -->
+<input type='text'    
+<!-- BEGIN: property --> {name}="{value}" <!-- END: property -->
+<!-- BEGIN:required -->
+jVal="{valid:function (val) { return required(val,'{requiredMessage}'); }}"
+<!-- END:required -->
+
+/>
+<!-- BEGIN:readOnly -->
+<input type="hidden" name="{name}" value="{value}">
+<!-- END:readOnly -->
+<!-- END: main -->

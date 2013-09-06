@@ -1,0 +1,10 @@
+<rasty specificationClass="Rasty\Forms\finderpopup\FinderPopup" templateLocation="FinderPopup.htm">
+
+	<param name="onSelectCallback" value="get:onSelectCallback" />
+	<param name="filterType" value="get:filterType" />
+	
+	<component id="popupFilter" instance="filter" >
+		
+	</component>
+	
+</rasty>

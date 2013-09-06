@@ -1,0 +1,22 @@
+<!-- BEGIN: main -->
+<script>
+
+$(document).ready(function(){
+	$('#{inputId}').simpleAutoComplete('{WEB_PATH}AutocompleteEntities.rasty?finder={finder}&parent='+parent,{
+		autoCompleteClassName: 'autocomplete'
+		,selectedClassName: 'sel'
+		,attrCallBack: 'rel'
+		,identifier: '{inputName}'
+    	} {functionCallback});
+
+	var width = $('#{inputId}').width(); 
+    $('.autocomplete').width( width );
+});
+</script>
+<input type='text'    
+<!-- BEGIN: property --> {name}="{value}" <!-- END: property -->
+<!-- BEGIN:required -->
+jVal="{valid:function (val) { return required(val,'{requiredMessage}'); }}"
+<!-- END:required -->
+/>
+<!-- END: main -->
