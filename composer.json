@@ -1,7 +1,7 @@
 {
     "name": "codnet/phprasty-forms",
     "type": "library","version":"1.0.0",
-    "description": "Forms for phprasty",
+    "description": "Forms components for phprasty",
     "keywords": ["php", "framework", "components", "forms", "codnet"],
     "homepage": "http://www.codnet.com.ar",
     "license": "GPL v2",
